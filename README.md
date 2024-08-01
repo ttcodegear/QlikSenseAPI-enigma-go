@@ -16,3 +16,5 @@ go mod init HelloWorld
 go get -u github.com/qlik-oss/enigma-go/v4
 
 go get -u github.com/google/uuid
+
+go run helloworld.go
