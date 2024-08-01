@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/google/uuid"
 	"github.com/qlik-oss/enigma-go/v4"
 )
 
@@ -17,7 +18,11 @@ func main() {
 	headers := make(http.Header, 1)
 	headers.Set("Authorization", fmt.Sprintf("Bearer %s", qcsApiKey))
 	ctx := context.Background()
-	global, err := enigma.Dialer{}.Dial(ctx, fmt.Sprintf("wss://%s/app/%s", tenant, appId), headers)
+	uuidv4, err := uuid.NewRandom()
+	if err != nil {
+		panic(err)
+	}
+	global, err := enigma.Dialer{}.Dial(ctx, fmt.Sprintf("wss://%s/app/%s/identity/%s", tenant, appId, uuidv4), headers)
 	if err != nil {
 		panic(err)
 	}
