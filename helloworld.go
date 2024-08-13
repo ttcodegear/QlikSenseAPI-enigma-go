@@ -127,6 +127,7 @@ func getAllList(ctx context.Context, lo_hypercube *enigma.GenericObject, lo_layo
 func renderingList(lo_layout *enigma.GenericObjectLayout) {
 	hc := lo_layout.ListObject
 	allListPages := hc.DataPages
+	fmt.Println(hc.DimensionInfo.FallbackTitle)
 	for _, p := range allListPages {
 		for r := range len(p.Matrix) {
 			for c := range len(p.Matrix[r]) {
@@ -164,6 +165,12 @@ func getAllData(ctx context.Context, hc_hypercube *enigma.GenericObject, hc_layo
 func renderingHyperCube(hc_layout *enigma.GenericObjectLayout) {
 	hc := hc_layout.HyperCube
 	allDataPages := hc.DataPages
+	for i := 0; i < len(hc.DimensionInfo); i++ {
+		fmt.Println(hc.DimensionInfo[i].FallbackTitle)
+	}
+	for i := 0; i < len(hc.MeasureInfo); i++ {
+		fmt.Println(hc.MeasureInfo[i].FallbackTitle)
+	}
 	for _, p := range allDataPages {
 		for r := range len(p.Matrix) {
 			for c := range len(p.Matrix[r]) {
